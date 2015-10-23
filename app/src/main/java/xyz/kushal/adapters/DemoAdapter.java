@@ -17,13 +17,17 @@ import xyz.kushal.dynamicspanrecycler.R;
  * A demo adapter for inflating data in recycler view.
  */
 
-public class DemoAdapter extends RecyclerView.Adapter {
-
+public class DemoAdapter extends RecyclerView.Adapter
+{
+    private final static int LARGE_VIEW_TYPE = 3;
+    private final static int MEDIUM_VIEW_TYPE = 2;
+    private final static int SMALL_VIEW_TYPE = 1;
     private ArrayList<String> dummyData = new ArrayList<>();
     private Activity activity;
     private LayoutInflater mInflater;
 
-    public DemoAdapter(ArrayList<String> dummyData, Activity activity) {
+    public DemoAdapter(ArrayList<String> dummyData, Activity activity)
+    {
         this.dummyData = dummyData;
         this.activity = activity;
 
@@ -31,16 +35,18 @@ public class DemoAdapter extends RecyclerView.Adapter {
     }
 
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType)
+    {
         View v;
-        switch (viewType) {
-            case 3:
+        switch (viewType)
+        {
+            case LARGE_VIEW_TYPE:
                 v = mInflater.inflate(R.layout.layout_large, parent, false);
                 return new LargeViewHolder(v);
-            case 2:
+            case MEDIUM_VIEW_TYPE:
                 v = mInflater.inflate(R.layout.layout_medium, parent, false);
                 return new MediumViewHolder(v);
-            case 1:
+            case SMALL_VIEW_TYPE:
                 v = mInflater.inflate(R.layout.layout_small, parent, false);
                 return new SmallViewHolder(v);
             default:
@@ -49,67 +55,80 @@ public class DemoAdapter extends RecyclerView.Adapter {
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position)
+    {
 
-        switch (getItemViewType(position)) {
-            case 3:
+        switch (getItemViewType(position))
+        {
+            case LARGE_VIEW_TYPE:
                 ((LargeViewHolder) holder).getDummyTextView().setText(dummyData.get(position));
                 break;
-            case 2:
+            case MEDIUM_VIEW_TYPE:
                 ((MediumViewHolder) holder).getDummyTextView().setText(dummyData.get(position));
                 break;
-            case 1:
+            case SMALL_VIEW_TYPE:
                 ((SmallViewHolder) holder).getDummyTextView().setText(dummyData.get(position));
                 break;
         }
     }
 
     @Override
-    public int getItemViewType(int position) {
+    public int getItemViewType(int position)
+    {
         return (3 - position % 3);
     }
 
     @Override
-    public int getItemCount() {
+    public int getItemCount()
+    {
         return dummyData.size();
     }
 
-    class LargeViewHolder extends RecyclerView.ViewHolder {
+    class LargeViewHolder extends RecyclerView.ViewHolder
+    {
 
         private TextView dummyTextView;
 
-        public LargeViewHolder(View itemView) {
+        public LargeViewHolder(View itemView)
+        {
             super(itemView);
             dummyTextView = (TextView) itemView.findViewById(R.id.dummy_text);
         }
 
-        public TextView getDummyTextView() {
+        public TextView getDummyTextView()
+        {
             return dummyTextView;
         }
     }
 
-    class MediumViewHolder extends RecyclerView.ViewHolder {
+    class MediumViewHolder extends RecyclerView.ViewHolder
+    {
         private TextView dummyTextView;
 
-        public MediumViewHolder(View itemView) {
+        public MediumViewHolder(View itemView)
+        {
             super(itemView);
             dummyTextView = (TextView) itemView.findViewById(R.id.dummy_text);
         }
 
-        public TextView getDummyTextView() {
+        public TextView getDummyTextView()
+        {
             return dummyTextView;
         }
     }
 
-    class SmallViewHolder extends RecyclerView.ViewHolder {
+    class SmallViewHolder extends RecyclerView.ViewHolder
+    {
         private TextView dummyTextView;
 
-        public SmallViewHolder(View itemView) {
+        public SmallViewHolder(View itemView)
+        {
             super(itemView);
             dummyTextView = (TextView) itemView.findViewById(R.id.dummy_text);
         }
 
-        public TextView getDummyTextView() {
+        public TextView getDummyTextView()
+        {
             return dummyTextView;
         }
     }
