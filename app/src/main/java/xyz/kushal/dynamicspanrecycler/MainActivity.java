@@ -11,9 +11,9 @@ import java.util.List;
 
 import xyz.kushal.adapters.DemoAdapter;
 
-public class MainActivity extends AppCompatActivity {
-
-
+public class MainActivity extends AppCompatActivity
+{
+    private final static int SPAN_SIZE = 3;
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private GridLayoutManager mLayoutManager;
@@ -21,18 +21,21 @@ public class MainActivity extends AppCompatActivity {
     private ArrayList<String> dummyData = new ArrayList<>();
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         mRecyclerView.setHasFixedSize(true);
 
-        mLayoutManager = new GridLayoutManager(MainActivity.this, 3);
-        mLayoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
+        mLayoutManager = new GridLayoutManager(MainActivity.this, SPAN_SIZE);
+        mLayoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup()
+        {
             @Override
-            public int getSpanSize(int position) {
-                return (3 - position % 3);
+            public int getSpanSize(int position)
+            {
+                return (SPAN_SIZE - position % SPAN_SIZE);
             }
         });
 
